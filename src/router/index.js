@@ -4,6 +4,8 @@ import firebase from "firebase/app";
 
 import Auth from "../components/Auth";
 import Home from "../components/Home";
+import Question from "../components/Question";
+import Game from "../components/Game";
 
 Vue.use(VueRouter);
 
@@ -19,6 +21,14 @@ const router = new VueRouter({
     {
       path: "/login",
       component: Auth,
+    },
+    {
+      path: "/new_question",
+      component: Question,
+    },
+    {
+      path: "/game",
+      component: Game,
     },
     {
       path: "*",
