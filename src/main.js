@@ -19,7 +19,7 @@ const store = new Vuex.Store({
   state: {
     user: null,
     error_register: null,
-    error_login: null
+    error_login: null,
   },
   mutations: {
     set_user(state, new_user) {

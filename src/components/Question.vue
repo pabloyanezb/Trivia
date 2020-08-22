@@ -130,7 +130,6 @@ export default {
       this.incorrecta1 = null
       this.incorrecta2 = null
       this.incorrecta3 = null
-      // this.$router.push({ path: '/' })
     }
   },
   firestore() {
