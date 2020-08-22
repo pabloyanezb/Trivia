@@ -81,7 +81,7 @@
       </v-row>
       </v-form>
     </v-card>
-    <v-snackbar v-model="snackbar" :timeout="timeout" top>
+    <v-snackbar v-model="snackbar" :timeout="timeout" top light>
       Agregaste una nueva pregunta!
       <template v-slot:action="{ attrs }">
         <v-btn icon v-bind="attrs" @click="snackbar = false">
