@@ -25,10 +25,16 @@ const router = new VueRouter({
     {
       path: "/new_question",
       component: Question,
+      meta:{
+        requiresAuth: true
+      }
     },
     {
       path: "/game",
       component: Game,
+      meta:{
+        requiresAuth: true
+      }
     },
     {
       path: "*",

@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid" @submit.prevent="register">
+  <v-form v-model="valid" @submit.prevent="register" class="form">
     <v-container>
     <h1>Registro</h1>
       <v-text-field
@@ -28,7 +28,7 @@
         :rules="[(password === confirm) || 'Las contraseñas no coinciden', v => !!v || 'Debes ingresar una contraseña']"
         required
       ></v-text-field>
-      <v-btn color="accent" :disabled="!valid" type='submit'>Registrar</v-btn>
+      <v-btn color="accent" :disabled="!valid" type='submit' class="mt-5">Registrar</v-btn>
       <v-alert v-if="error != null" type="error" dense outlined>{{error}}</v-alert>
     </v-container>
   </v-form>
@@ -73,9 +73,7 @@ export default {
 </script>
 
 <style>
-.v-btn {
-  margin-top: 1rem;
-}
+
 .v-alert {
   margin-top: 1rem;
 }

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="my-5 white--text">Comienza a responder!</h1>
+    <h1 class="my-5 white--text text-center">Responde las preguntas</h1>
     <v-form @submit.prevent="enviar">
       <v-card
         v-for="pregunta in preguntasDesordenadas.slice(0,1)"
@@ -14,6 +14,7 @@
             :key="i"
             :label="answer.answer"
             :value="answer.isCorrect ? 'ok' : answer.answer"
+            color="teal accent-3"
             require      
           ></v-radio>
         </v-radio-group>
@@ -30,6 +31,7 @@
             :key="i"
             :label="answer.answer"
             :value="answer.isCorrect ? 'ok' : answer.answer"
+            color="teal accent-3"
             require          
           ></v-radio>
         </v-radio-group>
@@ -46,23 +48,32 @@
             :key="i"
             :label="answer.answer"
             :value="answer.isCorrect ? 'ok' : answer.answer"
+            color="teal accent-3"
             require
           ></v-radio>
         </v-radio-group>
       </v-card>
-      <v-row>
-          <v-col col offset-md="10" md="2">
-            <v-btn
-              block
-              type="submit" 
-              color="indigo" 
-              dark
-              :disabled="!valido"
-            >Enviar
-            </v-btn>
-          </v-col>
-        </v-row>
+      <v-row justify="center">
+        <v-btn
+          rounded
+          x-large
+          type="submit"
+          dark
+          class="jugar"
+          min-width="170px"
+          :disabled="!valido"
+        >Enviar
+        </v-btn>
+      </v-row>
     </v-form>
+    <v-snackbar v-model="snackbar" :timeout="timeout" top>
+      Acertaste {{ correctas }} de 3!
+      <template v-slot:action="{ attrs }">
+        <v-btn icon v-bind="attrs" @click="snackbar = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -74,10 +85,13 @@ export default {
   name: 'Game',
   data() {
     return {
-      valido: true,
-      respuesta1: '',
-      respuesta2: '',
-      respuesta3: '',
+      valido: false,
+      respuesta1: null,
+      respuesta2: null,
+      respuesta3: null,
+      snackbar: false,
+      timeout: 2000,
+      correctas: null
     }
   },
   computed: {
@@ -110,7 +124,11 @@ export default {
       const fechaActual =  fecha.toLocaleDateString("es-CL", options);
       
       let porcentaje = (correctas / 3) * 100;
-      porcentaje = porcentaje.toFixed(1);
+      if (porcentaje != 100 && porcentaje != 0){
+        porcentaje = porcentaje.toFixed(1);
+      }
+
+      this.correctas = correctas;
 
       db.collection('puntajes').add ({
         nombre: this.$store.state.user.displayName,
@@ -119,10 +137,17 @@ export default {
         fechaActual: fechaActual,
         fecha: fecha
       })
-      this.$router.push({ path: '/' })
+      this.snackbar = true;
+      setTimeout( () => this.$router.push({ path: '/'}), 1300);
+    }
+  },
+  updated() {
+    if (this.respuesta1 && this.respuesta2 && this.respuesta3) {
+      this.valido = true;
     }
   }
 }
 </script>
 
-<style></style>
+<style>
+</style>

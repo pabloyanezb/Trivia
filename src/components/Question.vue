@@ -1,7 +1,6 @@
 <template>
   <v-container>
-    <h1 class="my-5 white--text">Nueva Pregunta</h1>
-    <v-card>
+    <v-card class="mt-10">
       <v-form v-model="valido" @submit.prevent="agregarPregunta" class="pa-5 newQuestion">
         <v-textarea
           v-model="pregunta"
@@ -67,20 +66,29 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col col offset-md="9" md="2">
-            <v-btn
-              block
-              type="submit" 
-              color="secondary"
-              class="mt-0"
-              :disabled="!valido"
-            >Agregar Pregunta
-            </v-btn>
-          </v-col>
-        </v-row>
+      <v-row justify="center">
+        <v-btn
+          rounded
+          x-large
+          type="submit"
+          light
+          class="jugar"
+          color="white--text"
+          min-width="170px"
+          :disabled="!valido"
+        >Agregar Pregunta
+        </v-btn>
+      </v-row>
       </v-form>
     </v-card>
+    <v-snackbar v-model="snackbar" :timeout="timeout" top>
+      Agregaste una nueva pregunta!
+      <template v-slot:action="{ attrs }">
+        <v-btn icon v-bind="attrs" @click="snackbar = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -97,6 +105,8 @@ export default {
       incorrecta1: null,
       incorrecta2: null,
       incorrecta3: null,
+      snackbar: false,
+      timeout: 2000,
     }
   },
   methods: {
@@ -119,17 +129,19 @@ export default {
           isCorrect: false
         },
       ]
-      respuestas = respuestas.sort(() => 0.5 - Math.random());
+      respuestas.sort(() => 0.5 - Math.random());
       console.log(respuestas);
       db.collection("questions").add({
         text: this.pregunta,
         answers: respuestas
       })
-      this.pregunta = null
-      this.correcta = null
-      this.incorrecta1 = null
-      this.incorrecta2 = null
-      this.incorrecta3 = null
+      this.snackbar = true;
+      setTimeout( () => this.$router.push({ path: '/'}), 1300);
+      // this.pregunta = null;
+      // this.correcta = null;
+      // this.incorrecta1 = null;
+      // this.incorrecta2 = null;
+      // this.incorrecta3 = null;
     }
   },
   firestore() {
@@ -143,5 +155,14 @@ export default {
 <style>
 .newQuestion .v-input__slot .v-label{
   font-weight: bold;
+}
+.mdi-comment-question-outline {
+  color: #546E7A !important;
+}
+.mdi-check-outline {
+  color: #1DE9B6 !important;
+}
+.mdi-close-outline {
+  color: #D50000 !important;
 }
 </style>

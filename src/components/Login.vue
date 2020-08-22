@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid" @submit.prevent="login">
+  <v-form v-model="valid" @submit.prevent="login" class="form">
     <v-container>
     <h1>Ingresar</h1>
       <v-text-field
@@ -15,7 +15,7 @@
         :rules="passRules"
         required
       ></v-text-field>
-      <v-btn color="accent" :disabled="!valid" type="submit">Ingresar</v-btn>
+      <v-btn color="accent" :disabled="!valid" type="submit" class="mt-5">Ingresar</v-btn>
       <v-alert v-if="error" type="error" dense outlined>{{error}}</v-alert>
     </v-container>
   </v-form>
