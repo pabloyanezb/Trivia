@@ -6,6 +6,7 @@
         v-model="email"
         :rules="emailRules"
         label="E-mail"
+        color="teal"
         required
       ></v-text-field>
       <v-text-field
@@ -13,6 +14,7 @@
         v-model="password"
         type="password"
         :rules="passRules"
+        color="teal"
         required
       ></v-text-field>
       <v-btn color="accent" :disabled="!valid" type="submit" class="mt-5">Ingresar</v-btn>

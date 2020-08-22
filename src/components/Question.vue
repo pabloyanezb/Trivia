@@ -1,19 +1,20 @@
 <template>
   <v-container>
-    <v-card class="mt-10">
+    <v-card class="mt-10 card" outlined dark>
       <v-form v-model="valido" @submit.prevent="agregarPregunta" class="pa-5 newQuestion">
         <v-textarea
           v-model="pregunta"
           label="Pregunta"
           placeholder="Ej: ¿Cual es la montaña más alta de sudamérica?"
-          prepend-icon="mdi-comment-question-outline"
+          prepend-icon="mdi-comment-question"
           rows="3"
+          row-height="30px"
           outlined
           clearable
           auto-grow
           counter
-          color="indigo"
-          :rules="[v => !!v || 'Debes ingresar una pregunta']"
+          color="teal"
+          :rules="reglasPregunta"
           required
         ></v-textarea>
         <v-row>
@@ -24,7 +25,7 @@
               placeholder="Ej: Monte Aconcagua"
               prepend-icon="mdi-check-outline"
               outlined
-              color="indigo"
+              color="teal"
               :rules="[v => !!v || 'Debes ingresar una respuesta correcta']"
               required
             ></v-text-field>
@@ -36,7 +37,7 @@
               placeholder="Ej: Ojos del Salado"
               prepend-icon="mdi-close-outline"
               outlined
-              color="indigo"
+              color="teal"
               :rules="[v => !!v || 'Debes ingresar una respuesta']"
               required
             ></v-text-field>
@@ -48,7 +49,7 @@
               placeholder="Ej: Monte Everest"
               prepend-icon="mdi-close-outline"
               outlined
-              color="indigo"
+              color="teal"
               :rules="[v => !!v || 'Debes ingresar una respuesta']"
               required
             ></v-text-field>
@@ -60,7 +61,7 @@
               placeholder="Ej: Machu Picchu"
               prepend-icon="mdi-close-outline"
               outlined
-              color="indigo"
+              color="teal"
               :rules="[v => !!v || 'Debes ingresar una respuesta']"
               required
             ></v-text-field>
@@ -71,7 +72,6 @@
           rounded
           x-large
           type="submit"
-          light
           class="jugar"
           color="white--text"
           min-width="170px"
@@ -107,6 +107,10 @@ export default {
       incorrecta3: null,
       snackbar: false,
       timeout: 2000,
+      reglasPregunta: [
+        v => !!v || 'Debes ingresar una pregunta',
+        v => (v && v.length <= 140) || 'Máximo 140 carácteres'
+      ]
     }
   },
   methods: {
@@ -156,13 +160,16 @@ export default {
 .newQuestion .v-input__slot .v-label{
   font-weight: bold;
 }
-.mdi-comment-question-outline {
-  color: #546E7A !important;
+.mdi-comment-question {
+  color: #79a3b6 !important;
 }
 .mdi-check-outline {
   color: #1DE9B6 !important;
 }
 .mdi-close-outline {
   color: #D50000 !important;
+}
+.card {
+  background-color: #00000077 !important;
 }
 </style>

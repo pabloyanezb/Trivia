@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="my-5 white--text text-center">Responde las preguntas</h1>
+    <h1 class="my-5 white--text text-center overline">RESPONDE LAS PREGUNTAS</h1>
     <v-form @submit.prevent="enviar">
       <v-card>
         <v-window v-model="onboarding" vertical class="px-6 pt-5"> 

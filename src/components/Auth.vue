@@ -1,13 +1,13 @@
 <template>
   <v-container>
     <v-row>
-      <v-col md='4' offset-md='1'>
-        <v-card class="pa-5">
+      <v-col md='4' offset-md='1' id="register" class="d-none d-sm-flex">
+        <v-card class="pa-5 carta">
           <Register></Register>
         </v-card>
       </v-col>
-      <v-col md='4' offset-md='2'>
-        <v-card class="pa-5">
+      <v-col md='4' offset-md='2' id="login">
+        <v-card class="pa-5 carta">
           <Login></Login>
         </v-card>
       </v-col>
@@ -29,4 +29,7 @@ export default {
 </script>
 
 <style>
+.carta {
+  width: inherit !important;
+}
 </style>

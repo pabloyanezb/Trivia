@@ -19,7 +19,7 @@
               <th>Nombre</th>
               <th>Puntaje</th>
               <th>Porcentaje</th>
-              <th>Fecha</th>
+              <th class="d-none d-sm-flex">Fecha</th>
             </tr>
           </thead>
           <tbody>
@@ -27,7 +27,7 @@
               <th>{{puntaje.nombre}}</th>
               <td>{{puntaje.correctas}}</td>
               <td>{{puntaje.porcentaje}}</td>
-              <td>{{puntaje.fechaActual}}</td>
+              <td class="d-none d-sm-flex">{{puntaje.fechaActual}}</td>
             </tr>
           </tbody>
         </v-simple-table>

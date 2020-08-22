@@ -6,12 +6,14 @@
         v-model="name"
         :rules="[v => !!v || 'Debes ingresar un nombre']"
         label="Nombre"
+        color="teal"
         required
       ></v-text-field>
       <v-text-field
         v-model="email"
         :rules="emailRules"
         label="E-mail"
+        color="teal"
         required
       ></v-text-field>
       <v-text-field
@@ -19,6 +21,7 @@
         v-model="password"
         type="password"
         :rules="passRules"
+        color="teal"
         required
       ></v-text-field>
       <v-text-field
@@ -26,6 +29,7 @@
         v-model="confirm"
         type="password"
         :rules="[(password === confirm) || 'Las contraseñas no coinciden', v => !!v || 'Debes ingresar una contraseña']"
+        color="teal"
         required
       ></v-text-field>
       <v-btn color="accent" :disabled="!valid" type='submit' class="mt-5">Registrar</v-btn>
