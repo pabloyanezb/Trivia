@@ -164,7 +164,7 @@ export default {
       db.collection("puntajes").add({
         nombre: this.$store.state.user.displayName,
         correctas: correctas + "/3",
-        porcentaje: porcentaje + "%",
+        porcentaje: parseInt(porcentaje),
         fechaActual: fechaActual,
         fecha: fecha,
       });
