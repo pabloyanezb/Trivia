@@ -12,7 +12,7 @@
         >Agregar Pregunta</v-btn
       >
       <v-spacer></v-spacer>
-      <v-btn text large tile class="perfil pr-0 mr-2  d-none d-sm-flex">
+      <v-btn text large tile class="perfil pr-0 mr-2 mt-n3 d-none d-sm-flex">
         <h3 v-if="user" class="name">
           {{ user.displayName }}
         </h3>
